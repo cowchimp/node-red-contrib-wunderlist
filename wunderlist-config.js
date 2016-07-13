@@ -4,5 +4,5 @@ module.exports = function(RED) {
     this.clientId = n.clientId;
     this.accessToken = n.accessToken;
   }
-  RED.nodes.registerType('wunderlist-config',WunderlistConfigNode);
+  RED.nodes.registerType('wunderlist-config', WunderlistConfigNode);
 };

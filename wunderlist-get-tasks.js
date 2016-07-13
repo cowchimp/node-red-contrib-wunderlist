@@ -10,8 +10,8 @@ module.exports = function(RED) {
       this.error(RED._('Wunderlist account is not configured'));
     }
     this.wunderlistAPI = new WunderlistSDK({
-      'accessToken': this.config.accessToken,
-      'clientID': this.config.clientId
+      'clientID': this.config.clientId,
+      'accessToken': this.config.accessToken
     });
 
     this.on('input', function(msg) {
