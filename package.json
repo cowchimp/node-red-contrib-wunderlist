@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-wunderlist",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node-red nodes for interacting with Wunderlist",
   "repository": "cowchimp/node-red-contrib-wunderlist",
   "author": {

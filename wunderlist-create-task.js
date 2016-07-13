@@ -1,21 +1,14 @@
-var WunderlistSDK = require('wunderlist');
+var wunderlistSDK = require('./wunderlist-sdk');
 
 module.exports = function(RED) {
   function WunderlistCreateTask(n) {
     RED.nodes.createNode(this, n);
     var node = this;
-
     this.config = RED.nodes.getNode(n.config);
-    if (!this.config) {
-      this.error(RED._('Wunderlist account is not configured'));
-    }
-    this.wunderlistAPI = new WunderlistSDK({
-      'clientID': this.config.clientId,
-      'accessToken': this.config.accessToken
-    });
 
     this.on('input', function(msg) {
-      var tasks = this.wunderlistAPI.http.tasks;
+      var wunderlistAPI = wunderlistSDK.getApi(node.config, msg);
+      var tasks = wunderlistAPI.http.tasks;
 
       tasks.create({
         'list_id': Number(n.listId || msg.listId),

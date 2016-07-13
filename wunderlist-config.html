@@ -4,7 +4,7 @@
     defaults: {
       name: { value: 'My Wunderlist account', required: true },
       clientId: { value: '', required: true },
-      accessToken: { value: '', required: true }
+      accessToken: { value: '' }
     },
     label: function() {
       return this.name;
@@ -25,4 +25,19 @@
     <label for="node-config-input-access-token"><i class="fa fa-code"></i> Access Token</label>
     <input type="text" id="node-config-input-accessToken">
   </div>
+</script>
+
+<script type="text/x-red" data-help-name="wunderlist-config">
+  <p>Configures the fields needed for all Wunderlist nodes</p>
+
+  <ul>
+    <li>
+      <b>Client Id</b> that is generated for you when you create your Wunderlist app.
+      <br />Go <a href="https://developer.wunderlist.com/apps/new" target="_blank">here</a> to create your app.
+    </li>
+    <li>
+      <b>Access Token</b> that is generated when the user authorizes your application.
+      <br />If it's left blank in the node it must be set in the incoming message on <code>msg.wunderlistAccessToken</code>
+    </li>
+  </ul>
 </script>
