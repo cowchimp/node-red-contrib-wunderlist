@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  RED.nodes.registerType('wunderlist-config',{
+    category: 'config',
+    defaults: {
+      name: { value: 'My Wunderlist account', required: true },
+      clientId: { value: '', required: true },
+      accessToken: { value: '', required: true }
+    },
+    label: function() {
+      return this.name;
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="wunderlist-config">
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-client-id"><i class="fa fa-code"></i> Client ID</label>
+    <input type="text" id="node-config-input-clientId">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-access-token"><i class="fa fa-code"></i> Access Token</label>
+    <input type="text" id="node-config-input-accessToken">
+  </div>
+</script>

@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  RED.nodes.registerType('wunderlist-get-lists',{
+    category: 'function',
+    color: '#E84228',
+    defaults: {
+      config: { type: 'wunderlist-config', required: true },
+      name: { value: '' }
+    },
+    inputs:1,
+    outputs:1,
+    icon: 'wunderlist-logo.png',
+    label: function() {
+      return this.name || 'get Wunderlist lists';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="wunderlist-get-lists">
+  <div class="form-row">
+    <label for="node-input-config"><i class="fa fa-code"></i> Configuration</label>
+    <input type="text" id="node-input-config" placeholder="Configuration">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="wunderlist-get-lists">
+  <p>Get all lists for the active user</p>
+
+  <ul>
+    <li><code>msg.payload</code> will be set to an array of list items</li>
+  </ul>
+</script>
