@@ -16,6 +16,7 @@ The following nodes are available:
 
 * Wunderlist configuration - to set your Client Id and Access Token
 * Create a task
+* Create a list
 * Get all the tasks in a list
 * Get all of the active user's lists
 
