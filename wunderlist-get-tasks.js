@@ -10,7 +10,7 @@ module.exports = function(RED) {
       var wunderlistAPI = wunderlistSDK.getApi(node.config, msg);
       var tasks = wunderlistAPI.http.tasks;
 
-      tasks.forList(Number(n.listId || msg.payload))
+      tasks.forList(Number(n.listId || msg.payload), (msg.completed || false))
         .done(function (tasksData, statusCode) {
           msg.payload = tasksData;
           node.send(msg);

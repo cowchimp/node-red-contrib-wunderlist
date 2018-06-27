@@ -15,10 +15,12 @@ npm install node-red-contrib-wunderlist
 The following nodes are available:
 
 * Wunderlist configuration - to set your Client Id and Access Token
-* Create a task
+* Create a task with reminder
+* Create comments
 * Create a list
 * Get all the tasks in a list
 * Get all of the active user's lists
+* Get comments for a list or a specific task
 
 If you need other Wunderlist functionality feel free to reach out and ask (PRs also welcome of course).
 

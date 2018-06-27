@@ -22,6 +22,9 @@
       "wunderlist-config": "wunderlist-config.js",
       "wunderlist-create-list": "wunderlist-create-list.js",
       "wunderlist-create-task": "wunderlist-create-task.js",
+      "wunderlist-create-subtask": "wunderlist-create-subtask.js",
+      "wunderlist-create-comment": "wunderlist-create-comment.js",
+      "wunderlist-get-comments": "wunderlist-get-comments.js",
       "wunderlist-get-lists": "wunderlist-get-lists.js",
       "wunderlist-get-tasks": "wunderlist-get-tasks.js"
     }
