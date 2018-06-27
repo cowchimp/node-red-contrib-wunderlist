@@ -37,11 +37,12 @@
 </script>
 
 <script type="text/x-red" data-help-name="wunderlist-create-task">
-  <p>Creates a new task in a list</p>
-
-  <ul>
-    <li><b>Task Title</b> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
-    <li><b>List Id</b> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.listId</code></li>
-    <li>The Id of the newly created task will be set to the <code>msg.taskId</code> property</li>
-  </ul>
+<p>Creates a new task in a list</p>
+<ul>
+<li><strong>Task Title</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
+<li><strong>List Id</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.listId</code></li>
+<li>The Id of the newly created task will be set to the <code>msg.taskId</code> property</li>
+<li>Optional - If <code>msg.due_date</code> is set in the incoming message it will be set to the task. Format as per&nbsp;<a href="https://developer.wunderlist.com/documentation/concepts/formats">https://developer.wunderlist.com/documentation/concepts/formats</a></li>
+<li>Optional - if <code>msg.reminder_date</code> is set in the incoming message it will create a reminder for the task.&nbsp;Format as for <code>msg.due_date</code></li>
+</ul>
 </script>

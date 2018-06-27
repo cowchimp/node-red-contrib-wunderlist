@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  RED.nodes.registerType('wunderlist-create-comment',{
+    category: 'function',
+    color: '#E84228',
+    defaults: {
+      config: { type: 'wunderlist-config', required: true },
+      comment: { value: '' },
+      taskId: { value: '' },
+      name: { value: '' }
+    },
+    inputs:1,
+    outputs:1,
+    icon: 'wunderlist-logo.png',
+    label: function() {
+      return this.name || this.comment || 'create Wunderlist comment';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="wunderlist-create-comment">
+  <div class="form-row">
+    <label for="node-input-config"><i class="fa fa-code"></i> Configuration</label>
+    <input type="text" id="node-input-config" placeholder="Configuration">
+  </div>
+  <div class="form-row">
+    <label for="node-input-comment"><i class="fa fa-thumb-tack"></i> Comment</label>
+    <input type="text" id="node-input-comment" placeholder="My comment to task">
+  </div>
+  <div class="form-row">
+    <label for="node-input-taskId"><i class="fa fa-list-alt"></i> Task Id</label>
+    <input type="text" id="node-input-taskId">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="wunderlist-create-comment">
+<p>Creates a new comment to a task</p>
+<ul>
+<li><strong>Comment</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
+<li><strong>Task Id</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.taskId</code></li>
+<li>The response will be returned in <code>msg.comment</code></li>
+</ul>
+</script>
