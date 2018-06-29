@@ -26,10 +26,10 @@ module.exports = function(RED) {
         msg.task = taskData;
 
         // If a reminder is defined
-        if (msg.reminder_date){
+        if (msg.reminderDate){
           var reminderData = {
             'task_id' : taskData.id,
-            'date' : msg.reminder_date
+            'date' : msg.reminderDate
           }
           reminders.create(reminderData)
           .done((reminderData, status) => {
@@ -37,11 +37,6 @@ module.exports = function(RED) {
             node.send(msg);
           })
           .fail((resp,code) => {
-            //Delete if it fails to create reminder
-            tasks.deleteID(taskData.id, 1)
-            .always((resp, code) => {
-              //Nothing
-            })
             node.error(resp || 'Wunderlist API error');
           })
         } else {
