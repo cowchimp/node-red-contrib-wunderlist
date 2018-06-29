@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  RED.nodes.registerType('wunderlist-get-comments',{
+    category: 'function',
+    color: '#E84228',
+    defaults: {
+      config: { type: 'wunderlist-config', required: true },
+      listId: { value: '' },
+      taskId: { value: ''},
+      name: { value: '' }
+    },
+    inputs:1,
+    outputs:1,
+    icon: 'wunderlist-logo.png',
+    label: function() {
+      return this.name || 'get Wunderlist comments';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="wunderlist-get-comments">
+  <div class="form-row">
+    <label for="node-input-config"><i class="fa fa-code"></i> Configuration</label>
+    <input type="text" id="node-input-config" placeholder="Configuration">
+  </div>
+  <div class="form-row">
+    <label for="node-input-taskId"><i class="fa fa-list-alt"></i> Task Id</label>
+    <input type="text" id="node-input-taskId">
+  </div>
+  <div class="form-row">
+    <label for="node-input-listId"><i class="fa fa-list-alt"></i> List Id</label>
+    <input type="text" id="node-input-listId">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="wunderlist-get-comments">
+<p>Get comments for a list or a specific task</p>
+<ul>
+<li><strong>Task Id</strong> is an optional field. If it's left blank in the node it must be set in the incoming message on <code>msg.taskId</code></li>
+<li><strong>List Id</strong> is an optional field. If it's left blank in the node it must be set in the incoming message on <code>msg.listId</code></li>
+<li>If values for both List&nbsp;Id and&nbsp;Task Id&nbsp;are entered&nbsp;Task Id will be used</li>
+<li><code>msg.completed</code> is optional. If <code>true</code> it will return completed tasks</li>
+<li><code>msg.payload</code> will be set to an array of comments</li>
+</ul>
+</script>

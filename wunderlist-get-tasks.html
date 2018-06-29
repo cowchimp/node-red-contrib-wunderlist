@@ -32,10 +32,10 @@
 </script>
 
 <script type="text/x-red" data-help-name="wunderlist-get-tasks">
-  <p>Get tasks for a list</p>
-
-  <ul>
-    <li><b>List Id</b> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
-    <li><code>msg.payload</code> will be set to an array of task items</li>
-  </ul>
+<p>Get tasks for a list</p>
+<ul>
+<li><strong>List Id</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
+  <li><code>msg.completed</code> is optional. If <code>true</code> it will return completed tasks</li>
+<li><code>msg.payload</code> will be set to an array of task items</li>
+</ul>
 </script>

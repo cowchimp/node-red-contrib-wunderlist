@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  RED.nodes.registerType('wunderlist-create-subtask',{
+    category: 'function',
+    color: '#E84228',
+    defaults: {
+      config: { type: 'wunderlist-config', required: true },
+      subtaskTitle: { value: '' },
+      taskId: { value: '' },
+      name: { value: '' }
+    },
+    inputs:1,
+    outputs:1,
+    icon: 'wunderlist-logo.png',
+    label: function() {
+      return this.name || this.subtaskTitle || 'create Wunderlist subtask';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="wunderlist-create-subtask">
+  <div class="form-row">
+    <label for="node-input-config"><i class="fa fa-code"></i> Configuration</label>
+    <input type="text" id="node-input-config" placeholder="Configuration">
+  </div>
+  <div class="form-row">
+    <label for="node-input-subtaskTitle"><i class="fa fa-thumb-tack"></i> Subtask Title</label>
+    <input type="text" id="node-input-subtaskTitle" placeholder="Milk">
+  </div>
+  <div class="form-row">
+    <label for="node-input-taskId"><i class="fa fa-list-alt"></i> Task Id</label>
+    <input type="text" id="node-input-taskId">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="wunderlist-create-subtask">
+<p>Creates a new subtask to a task</p>
+<ul>
+<li><strong>Subtask Title</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.payload</code></li>
+<li><strong>Task Id</strong> is a mandatory field. If it's left blank in the node it must be set in the incoming message on <code>msg.taskId</code></li>
+<li>The response will be returned in <code>msg.subtask</code></li>
+</ul>
+</script>
