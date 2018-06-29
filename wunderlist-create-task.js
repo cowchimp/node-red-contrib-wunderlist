@@ -16,8 +16,8 @@ module.exports = function(RED) {
         'title': n.taskTitle || msg.payload
       };
       // Add due date if in msg
-      if (msg.due_date){
-        params.due_date = msg.due_date;
+      if (msg.dueDate){
+        params.due_date = msg.dueDate;
       }
 
       tasks.create(params)
