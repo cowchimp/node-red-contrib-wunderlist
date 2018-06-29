@@ -25,22 +25,21 @@ module.exports = function(RED) {
         msg.taskId = taskData.id;
         msg.task = taskData;
 
-        // If a reminder is defined
-        if (msg.reminderDate){
-          var reminderData = {
-            'task_id' : taskData.id,
-            'date' : msg.reminderDate
-          }
-          reminders.create(reminderData)
-          .done((reminderData, status) => {
-            msg.reminder = reminderData;
-            node.send(msg);
-          })
-          .fail((resp,code) => {
-            node.error(resp || 'Wunderlist API error');
-          })
-        } else {
+        if (!msg.reminderDate) {
           node.send(msg);
+        } else {
+          var reminderData = {
+            'task_id': taskData.id,
+            'date': msg.reminderDate
+          };
+          reminders.create(reminderData)
+            .done((reminderData, status) => {
+              msg.reminder = reminderData;
+              node.send(msg);
+            })
+            .fail((resp, code) => {
+              node.error(resp || 'Wunderlist API error');
+            })
         }
       })
       .fail(function (resp, code) {
