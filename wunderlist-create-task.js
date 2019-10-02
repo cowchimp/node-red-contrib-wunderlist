@@ -6,7 +6,9 @@ module.exports = function(RED) {
     var node = this;
     this.config = RED.nodes.getNode(n.config);
 
-    this.on('input', function(msg) {
+    this.on('input', function(msg, send, done) {
+      send = send || function() { node.send.apply(node,arguments) };
+
       var wunderlistAPI = wunderlistSDK.getApi(node.config, msg);
       var tasks = wunderlistAPI.http.tasks;
       var reminders = wunderlistAPI.http.reminders;
@@ -26,7 +28,10 @@ module.exports = function(RED) {
         msg.task = taskData;
 
         if (!msg.reminderDate) {
-          node.send(msg);
+          send(msg);
+          if (done) {
+            done();
+          }
         } else {
           var reminderData = {
             'task_id': taskData.id,
@@ -35,15 +40,28 @@ module.exports = function(RED) {
           reminders.create(reminderData)
             .done((reminderData, status) => {
               msg.reminder = reminderData;
-              node.send(msg);
+              send(msg);
+              if (done) {
+                done();
+              }
             })
             .fail((resp, code) => {
-              node.error(resp || 'Wunderlist API error');
+              var err = resp || 'Wunderlist API error';
+              if (done) {
+                done(err)
+              } else {
+                node.error(err);
+              }
             })
         }
       })
       .fail(function (resp, code) {
-        node.error(resp || 'Wunderlist API error');
+        var err = resp || 'Wunderlist API error';
+        if (done) {
+          done(err)
+        } else {
+          node.error(err);
+        }
       });
     });
   }

@@ -6,7 +6,9 @@ module.exports = function(RED) {
     var node = this;
     this.config = RED.nodes.getNode(n.config);
 
-    this.on('input', function(msg) {
+    this.on('input', function(msg, send, done) {
+      send = send || function() { node.send.apply(node,arguments) };
+
       var wunderlistAPI = wunderlistSDK.getApi(node.config, msg);
       var comments = wunderlistAPI.http.task_comments;
 
@@ -18,10 +20,18 @@ module.exports = function(RED) {
       comments.create(params)
       .done(function (taskData, statusCode) {
         msg.comment = taskData;
-        node.send(msg);
+        send(msg);
+        if (done) {
+          done();
+        }
       })
       .fail(function (resp, code) {
-        node.error(resp || 'Wunderlist API error');
+        var err = resp || 'Wunderlist API error';
+        if (done) {
+          done(err)
+        } else {
+          node.error(err);
+        }
       });
     });
   }
